@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pixelfreight — Coming Soon</title>
+  <title>Pixelfreight — Earlybird 33% Off</title>
 
-  <!-- Import Geist font from Vercel -->
+  <!-- Geist font -->
   <link href="https://geisthub.vercel.app/fonts.css" rel="stylesheet" />
 
   <style>
@@ -13,19 +13,8 @@
       font-family: 'Geist', sans-serif;
       background: #f9fafc;
       color: #172b4d;
-      margin: 0;
-      padding: 0;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    img.logo {
-      width: 120px;
-      margin-bottom: 20px;
+      padding: 80px 20px;
     }
 
     h1 {
@@ -34,45 +23,94 @@
     }
 
     p {
+      font-size: 1rem;
       max-width: 600px;
       margin: 0 auto 20px;
     }
 
-    .offer {
-      font-weight: bold;
-      margin: 1rem 0;
-    }
-
     form {
-      margin: 20px 0;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 400px;
+      margin: 0 auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
 
-    input[type="email"] {
+    input, textarea {
+      font-family: 'Geist', sans-serif;
+      width: 100%;
       padding: 10px;
-      width: 250px;
+      margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 4px;
-      font-family: 'Geist', sans-serif;
+      font-size: 1rem;
     }
 
     button {
-      padding: 10px 20px;
       background-color: #172b4d;
       color: white;
       border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
       border-radius: 4px;
-      margin-left: 10px;
       cursor: pointer;
-      font-family: 'Geist', sans-serif;
+    }
+
+    button:hover {
+      background-color: #0f1e33;
+    }
+
+    .confirmation {
+      display: none;
+      font-weight: bold;
+      margin-top: 20px;
     }
 
     footer {
-      font-size: 0.85rem;
-      color: #999;
       margin-top: 40px;
+      font-size: 0.85rem;
+      color: #888;
     }
   </style>
 </head>
 <body>
 
-  <img class="logo" src="logo.png" al
+  <h1>Site under construction</h1>
+  <p>We’re already helping carriers, brokers, and forwarders upgrade their websites.</p>
+  <p><strong>Get 33% off by joining the earlybird list.</strong></p>
+
+  <form id="earlybird-form">
+    <input type="text" name="name" placeholder="Your name" required />
+    <input type="email" name="email" placeholder="Your email" required />
+    <textarea name="note" rows="3" placeholder="Optional note"></textarea>
+    <button type="submit">Claim 33% Discount</button>
+    <div class="confirmation" id="confirmation-message">Thank you! We'll be in touch soon.</div>
+  </form>
+
+  <footer>Pixelfreight — Websites that deliver, for companies that deliver freight.</footer>
+
+  <script>
+    const form = document.getElementById('earlybird-form');
+    const confirmation = document.getElementById('confirmation-message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      const response = await fetch('https://script.google.com/macros/s/AKfycby5lcA8z2BNVKWAAai-Mcdzwp8V-UuxRzurplOXnP1qTTw00k45rlzLAHoP_i5doXft/exec', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (response.ok) {
+        form.reset();
+        confirmation.style.display = 'block';
+      } else {
+        alert('Submission failed. Please try again.');
+      }
+    });
+  </script>
+
+</body>
+</html>
